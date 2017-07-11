@@ -4,10 +4,7 @@ content=$(curl -s https://api.github.com/repos/vector-im/riot-web/releases/lates
 package_id=$(jq -r '.id' <<<"$content")
 
 # If it is started for the first time, it creates a file in which the latest version number will be saved.
-if [! -f ./riot_version-id ]
-then
-    touch riot_version-id
-fi
+[ -f ./riot_version-id ] || touch riot_version-id
 
 if [ "$package_id" != "$(cat ./riot_version-id)" ]
 then
@@ -17,10 +14,8 @@ then
     if [ "$content_type" == "application/x-gzip" ]
     then
 	# If there is no Riot-web directory, it will be created.
-	if [ ! -f ./Riot-web ]
-	then
-	    mkdir Riot-web
-	fi
+	if [ ! -d ./Riot-web ] instead of if [ ! -f ./Riot-web ]
+	
 	download=$(jq -r '.browser_download_url' <<<"$download_asset")
 	echo "New Version found starting download"
 	curl -Ls "$download" | tar xz --strip-components=1 -C ./Riot-web/
