@@ -17,7 +17,10 @@ then
     if [ "$content_type" == "application/x-gzip" ]
     then
 	# If there is no Riot-web directory, it will be created.
-	if [ ! -d ./Riot-web ] instead of if [ ! -f ./Riot-web ]
+	if [ ! -d ./Riot-web ]
+	then
+	    mkdir Riot-web
+	fi
 	
 	download=$(jq -r '.browser_download_url' <<<"$download_asset")
 	echo "New Version found starting download"
