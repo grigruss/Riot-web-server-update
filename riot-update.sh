@@ -1,6 +1,9 @@
 #!/bin/bash
 #Authors: @MTRNord:matrix.ffslfl.net @grigruss:matrix.org
 
+# Specify the path to the web server directory
+WWW="/www/html/"
+
 # Get the content to determine the latest version.
 content=$(curl -s https://api.github.com/repos/vector-im/riot-web/releases/latest)
 package_id=$(jq -r '.id' <<<"$content")
@@ -28,8 +31,6 @@ then
 	echo "$package_id" >> ./riot_version-id
 	echo "The new version is downloaded. Copying to the web server directory begins."
 
-	# Specify the path to the web server directory
-	WWW="/www/html/"
 	# Uncomment for save your logos
 	#rm -rf ./Riot-web/img/logos
 
