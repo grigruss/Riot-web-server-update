@@ -1,11 +1,14 @@
 #!/bin/bash
+#Authors: @MTRNord:matrix.ffslfl.net @grigruss:matrix.org
 
+# Get the content to determine the latest version.
 content=$(curl -s https://api.github.com/repos/vector-im/riot-web/releases/latest)
 package_id=$(jq -r '.id' <<<"$content")
 
 # If it is started for the first time, it creates a file in which the latest version number will be saved.
 [ -f ./riot_version-id ] || touch riot_version-id
 
+# If the versions are different, we begin the update
 if [ "$package_id" != "$(cat ./riot_version-id)" ]
 then
     assets=$(jq -r '.assets' <<<"$content")
