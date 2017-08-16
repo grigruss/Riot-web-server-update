@@ -3,7 +3,7 @@
 # Authors: @MTRNord:matrix.ffslfl.net @grigruss:matrix.org
 
 # Specify the path to the web server directory
-WWW="./riot-web"
+WWW="/www/html/"
 
 # Get the content to determine the latest version.
 content=$(curl -s https://api.github.com/repos/vector-im/riot-web/releases/latest)
