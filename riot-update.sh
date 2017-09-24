@@ -22,7 +22,7 @@ fi
 if [ "$package_id" != "$(cat ./riot_version-id)" ]
 then
     download_url=$(jq -r '.assets[] | select(.content_type == "application/x-gzip") | .browser_download_url' <<<"$content")
-    if [ $download_url != "" ]
+    if [ "$download_url" != "" ]
     then
         # If there is no Riot-web directory, it will be created.
         if [ ! -d ./Riot-web ]
