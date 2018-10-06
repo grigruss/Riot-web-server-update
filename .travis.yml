@@ -1,14 +1,6 @@
-language: sh
+language: shell
 
 sudo: false
-
-addons:
-  apt:
-    sources:
-    - debian-sid
-    packages:
-    - shellcheck
-
 script:
  - shellcheck ./riot-update.sh
 
