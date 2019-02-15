@@ -32,7 +32,7 @@ then
 
         echo "New Version found starting download"
         curl -Ls "$download_url" | tar xz --strip-components=1 -C ./Riot-web/
-        echo "$package_id" >> ./riot_version-id
+        echo "$package_id" > ./riot_version-id
         echo "The new version is downloaded. Copying to the web server directory begins."
 
         # Uncomment for save your logos
